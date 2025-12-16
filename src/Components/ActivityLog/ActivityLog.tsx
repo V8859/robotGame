@@ -7,7 +7,7 @@ const ActivityLog = () => {
       <span className="border-b h-fit min-w-full bg-gray-950">
         Activity Log
       </span>
-      <ul className="min-w-full h-full flex-col-reverse flex overflow-y-scroll">
+      <ul className="min-w-full h-full flex-col flex overflow-y-scroll">
         {activityLog.map((message: string, _: number) => {
           return (
             <li
