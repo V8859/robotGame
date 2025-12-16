@@ -3,7 +3,7 @@
 ### For running in development
 
 - Clone Git repo
-- Switch to directory if not in correct directory
+- Switch to directory if not in correct directory `cd robotGame`
 - `npm install`
 - `npm run dev`
 
