@@ -3,8 +3,9 @@
 ### For running in development
 
 - Clone Git repo
-- npm install
-- npm run dev
+- Switch to directory if not in correct directory
+- `npm install`
+- `npm run dev`
 
 ### Assumptions
 
