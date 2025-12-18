@@ -1,8 +1,9 @@
+//eslint-disable
+//@ts-ignore
 import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import ActivityLog from "../Components/ActivityLog/ActivityLog";
 import useGameManager from "../Context/useGameManager";
-
 vi.mock("../Context/useGameManager", () => ({
   default: vi.fn(),
 }));

@@ -45,8 +45,8 @@ export const changeCurrentPos = (CurrentPos: locType, face: faceType) => {
   };
   if (CurrentPos) {
     const [x, y] = CurrentPos;
-    console.log("Calling POS");
-    console.log("Activated POS");
+    // console.log("Calling POS");
+    // console.log("Activated POS");
     if (x !== null && y !== null && x >= 0 && x < 5 && y >= 0 && y < 5) {
       localStorage.setItem("CurrentPos", JSON.stringify(payload));
     }
@@ -90,4 +90,39 @@ export const resetGame = async () => {
   resetGameBoard();
   resetCurrentPos();
   updateActivityLog([""]);
+  resetPreviousPos();
+};
+
+export const setPreviousPos = (
+  PreviousPos: locType,
+  Previousface: faceType
+) => {
+  localStorage.setItem(
+    "PrevPosition",
+    JSON.stringify({ PreviousPos, Previousface })
+  );
+};
+
+export const getPreviousPos = () => {
+  const { PreviousPos, Previousface } = JSON.parse(
+    localStorage.getItem("PrevPosition") || "{}"
+  ) as { PreviousPos: locType; Previousface: faceType };
+  if (PreviousPos !== null && Previousface !== null) {
+    localStorage.setItem(
+      "PrevPosition",
+      JSON.stringify({ PreviousPos: null, Previousface: null })
+    );
+    return { PreviousPos, Previousface };
+  }
+  return { PreviousPos: null, Previousface: null } as {
+    PreviousPos: locType;
+    Previousface: faceType;
+  };
+};
+
+export const resetPreviousPos = () => {
+  localStorage.setItem(
+    "PrevPosition",
+    JSON.stringify({ PreviousPos: null, Previousface: null })
+  );
 };

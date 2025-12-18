@@ -5,7 +5,7 @@ import { placeExecute } from "../../Helpers/Place";
 
 const Terminal = () => {
   const [message, setMessage] = useState("");
-  const { move, place, right, left, report } = useGameManager();
+  const { move, place, right, left, report, back } = useGameManager();
   return (
     <div className="block relative w-[50%]">
       <form
@@ -26,6 +26,10 @@ const Terminal = () => {
           }
           if (command === "report()") {
             report();
+            return;
+          }
+          if (command === "back()") {
+            back();
             return;
           }
           if (command !== null) {

@@ -8,6 +8,7 @@ type Props = {
   right: () => void;
   report: () => void;
   activityLog: string[];
+  back: () => void;
 };
 const GameManagerContext = createContext<Props | undefined>(undefined);
 export default GameManagerContext;

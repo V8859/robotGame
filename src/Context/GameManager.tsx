@@ -10,6 +10,8 @@ import {
   changeCurrentPos,
   updateActivityLog,
   updateGameBoard,
+  getPreviousPos,
+  setPreviousPos,
 } from "../Helpers/LocaStorangeHandler";
 import { handleLeft, handleRight } from "../Helpers/HandleTurns";
 import type {
@@ -20,6 +22,7 @@ import type {
 } from "../Helpers/Gameboard";
 import GameManagerContext from "./GameManagerContext";
 import { computeMove } from "../Helpers/ComputeMove";
+// import { placeExecute } from "../Helpers/Place";
 
 const GameManager = ({ children }: { children: React.ReactNode }) => {
   const [board, setBoard] = useState<boardType>(() => getGameBoard());
@@ -80,8 +83,24 @@ const GameManager = ({ children }: { children: React.ReactNode }) => {
     if (res)
       updateLog("place(" + x + "," + y + "," + face?.toUpperCase() + ")");
   };
+
+  const back = () => {
+    const { PreviousPos, Previousface } = getPreviousPos();
+    const { CurrentPos, face } = getCurrentPos();
+    if (PreviousPos !== null && CurrentPos !== null) {
+      changeCurrentPos(PreviousPos, face);
+      // console.log(PreviousPos);
+      updateCell([PreviousPos[0], PreviousPos[1]], (cell) => {
+        cell.active = true;
+        cell.face = Previousface;
+        deactivateCell(CurrentPos[0], CurrentPos[1]);
+      });
+    }
+  };
+
   const move = () => {
     const { CurrentPos, face } = getCurrentPos();
+    setPreviousPos(CurrentPos, face);
     const direction = computeMove(face);
     if (direction !== null && CurrentPos !== null) {
       const expression = [
@@ -99,10 +118,14 @@ const GameManager = ({ children }: { children: React.ReactNode }) => {
   };
   const left = () => {
     const { CurrentPos } = getCurrentPos();
+    const { PreviousPos } = getPreviousPos();
     if (CurrentPos) {
       const direction = handleLeft();
       if (direction !== null && direction !== undefined) {
         changeCurrentPos(CurrentPos, direction);
+        if (PreviousPos !== null) {
+          setPreviousPos(PreviousPos, direction);
+        }
         updateCell([CurrentPos[0], CurrentPos[1]], (cell) => {
           cell.face = direction;
         });
@@ -112,11 +135,15 @@ const GameManager = ({ children }: { children: React.ReactNode }) => {
   };
   const right = () => {
     const { CurrentPos } = getCurrentPos();
+    const { PreviousPos } = getPreviousPos();
+
     if (CurrentPos) {
       const direction = handleRight();
-
       if (direction !== null && direction !== undefined) {
         changeCurrentPos(CurrentPos, direction);
+        if (PreviousPos !== null) {
+          setPreviousPos(PreviousPos, direction);
+        }
         updateCell([CurrentPos[0], CurrentPos[1]], (cell) => {
           cell.face = direction;
         });
@@ -145,6 +172,7 @@ const GameManager = ({ children }: { children: React.ReactNode }) => {
         right,
         report,
         board,
+        back,
       }}
     >
       {children}
