@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import React from "react";
 import {
@@ -29,6 +29,13 @@ const GameManager = ({ children }: { children: React.ReactNode }) => {
   const [activityLog, setActivityLog] = useState<string[]>(() =>
     getActivityLog()
   );
+
+  // // Spawn ORB
+  // useEffect(() => {
+  //   // getCurrentOrb();
+  //   setTimeout(() => {}, 5000);
+  // }, []);
+
   // Uncomment line below, if getGameBoard is being funny
   // if (board === undefined) initGameBoard();
 

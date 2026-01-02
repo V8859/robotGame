@@ -24,7 +24,7 @@ const GameBoard = () => {
                 >
                   <div
                     data-testid={`robot-${box.loc?.[0]}-${box.loc?.[1]}`}
-                    className={`absolute top-2 left-2 transform-3d z-1 transition-all duration-500 ease-in-out h-[50%] w-[50%]
+                    className={`absolute top-3 left-3 transform-3d z-1 transition-all duration-500 ease-in-out h-[50%] w-[50%]
                       ${box.active ? "block" : "hidden"}
                       ${box.face === "north" ? "rotate-0" : ""}
                       ${box.face === "south" ? "rotate-180" : ""}
@@ -32,15 +32,15 @@ const GameBoard = () => {
                       ${box.face === "west" ? "rotate-90" : ""} `}
                   >
                     <div
-                      className={`bg-slate-600 inset-0 transition-all duration-500 ease-in-out items-center justify-center flex rounded-2xl h-full w-full `}
+                      className={`bg-slate-600 inset-0 border border-slate-950 transition-all duration-500 ease-in-out items-center justify-center flex rounded-2xl h-full w-full `}
                     >
                       <div className="bg-slate-900 flex absolute border-2 border-slate-950 h-[50%] rounded-2xl w-[50%]">
                         <div className="bg-amber-600 h-[60%] w-[60%]"></div>
                         <div className="bg-purple-800 h-[60%] w-[60%]"></div>
                       </div>
                     </div>
-                    <div className="absolute w-[25%] rounded-b-2xl z-[-5] h-[80%] top-2 shadow-2xl left-0 bg-sky-500"></div>
-                    <div className="absolute w-[25%] rounded-b-2xl z-[-5] h-[80%] top-2 shadow-2xl right-0 bg-sky-500"></div>
+                    <div className="absolute w-[25%] rounded-b-2xl z-[-5] h-[80%] top-2 shadow-2xl shadow-white border border-slate-900 left-0 bg-sky-500"></div>
+                    <div className="absolute w-[25%] rounded-b-2xl z-[-5] h-[80%] top-2 shadow-2xl shadow-white border border-slate-900 right-0 bg-sky-500"></div>
                   </div>
                   <div className="absolute border-l border-slate-600 top-1 w-[98%] h-full bg-slate-400"></div>
                 </div>
