@@ -11,7 +11,7 @@ export const placeExecute = (
       const furtherStringified = stringified[1].split(",");
       const x = furtherStringified[0];
       const y = furtherStringified[1];
-      const direction = furtherStringified[2].toLowerCase().replace(/'/g, "");
+      const direction = furtherStringified[2]?.toLowerCase()?.replace(/'/g, "");
       console.log(direction);
       const { CurrentPos } = getCurrentPos();
       if (CurrentPos === null) {
