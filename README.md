@@ -1,5 +1,7 @@
 # Instructions
 
+### View the <a href=https://v8859.github.io/robotGame/>Demo</a>
+
 ### For running in development
 
 - Clone Git repo
